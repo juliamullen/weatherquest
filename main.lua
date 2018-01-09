@@ -1,6 +1,8 @@
 function love.draw()
+    world:draw(1, 1, 40, 40)
     --world:draw(unpack(camera:get_position()))
-    world:draw(1, 1, 20, 20)
+    love.graphics.translate(player.x, player.y)
+    --world:draw(1, 1, 20, 20)
     player:draw()
 end
 
