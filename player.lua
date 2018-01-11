@@ -69,6 +69,7 @@ end
 function Player:update(dt)
     new_x, new_y = self:process_directions(dt, self:get_directions())
     if new_x ~= self.x or new_y ~= self.y then
+    --print(new_x, new_y)
         if world:check_collision(self:get_aabb(new_x, new_y)) then
             self.x = new_x
             self.y = new_y
@@ -79,9 +80,4 @@ end
 
 function Player:draw()
     love.graphics.draw(self.image, self.x, self.y, 0, .5, .5)
-    --[[if camera:following_player() then
-        nil
-    else
-        love.graphics.draw(self.image, love.graphics.getWidth() / 2, love.graphics.getHeight() / 2, 0, .5, .5)
-    end]]
 end

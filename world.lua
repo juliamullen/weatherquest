@@ -2,42 +2,18 @@ World = Object:extend()
 
 local utils = require "utils"
 
-function World:new()
-    self.map_width = 40
-    self.map_height = 40
+function World:new(width, height)
+    self.map_width = width
+    self.map_height = height
     self.map = utils.create_map(self.map_width, self.map_height)
     self.tiles = {love.graphics.newImage("img/grass-tile.png"), love.graphics.newImage("img/grass-tile-2.png"), love.graphics.newImage("img/grass-tile-3.png")}
     self.tile_size = 48
 end
 
-function World:get_tile_coordinates(x, y, w, h)
-    --print(x, y, w, h)
-    local top, bottom = math.ceil(y / self.tile_size),  math.ceil((y + h) / self.tile_size)
-    local left, right = math.ceil(x / self.tile_size), math.ceil((x + w) / self.tile_size)
-    --print("top", top, "bottom", bottom, "left", left, "right", right)
-
-    return top, bottom, left, right
-end
-
-function World:get_camera_coordinates(x, y, w, h)
-    local offset_x, offset_y = x % self.tile_size, y % self.tile_size
-    print(offset_x, offset_y)
-
-    return offset_x, offset_y, self:get_tile_coordinates(x, y, w, h)
-end
-
-function World:at_edge(x, y, w, h)
-end
-
-function World:draw(x, y, width, height)
-    --[[local offset_x, offset_y, top, bottom, left, right = self:get_camera_coordinates(x, y, width, height)
-    --print(top, bottom, left, right)
-    --print(offset_x, offset_y, top, bottom, left, right, "offset_x", "offset_y", "top", "bottom", "left", "right")
-    local image_order = {}
+function World:draw()
+    local top, bottom, left, right = 1, self.map_height, 1, self.map_width
     for row_index = left, right do
-        for column_index = top, bottom do]]
-    for row_index = x, x + width do
-        for column_index = y, y + height do
+        for column_index = top, bottom do
             local image_index = self.map[column_index] and self.map[column_index][row_index]
             local image = self.tiles[image_index]
 
@@ -49,13 +25,20 @@ function World:draw(x, y, width, height)
                 -- löve subtracting ones from stuff
                 -- don't +1 this code, because
                 -- this is the real deal -1 code
-                --[[local x_cord = offset_x + (self.tile_size * (row_index - 1)) - x
-                local y_cord = offset_y + (self.tile_size * (column_index - 1)) - y]]
                 love.graphics.draw(image, self.tile_size * (row_index - 1), self.tile_size * (column_index - 1))
 
             end
         end
     end
+end
+
+function World:get_tile_coordinates(x, y, w, h)
+    --print(x, y, w, h)
+    local top, bottom = math.ceil(y / self.tile_size),  math.ceil((y + h) / self.tile_size)
+    local left, right = math.ceil(x / self.tile_size), math.ceil((x + w) / self.tile_size)
+    --print("top", top, "bottom", bottom, "left", left, "right", right)
+
+    return top, bottom, left, right
 end
 
 function World:check_collision(bound_x, bound_y, w, h)
