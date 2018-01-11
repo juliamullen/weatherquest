@@ -67,10 +67,17 @@ function Player:get_aabb(new_x, new_y)
 end
 
 function Player:update(dt)
-    new_x, new_y = self:process_directions(dt, self:get_directions())
+    if love.keyboard.isDown("t") then
+        if mob:in_range(self.x, self.y) then
+            mode = 'conversation'
+        end
+    end
+    local new_x, new_y = self:process_directions(dt, self:get_directions())
     if new_x ~= self.x or new_y ~= self.y then
     --print(new_x, new_y)
-        if world:check_collision(self:get_aabb(new_x, new_y)) then
+        local world_collision = world:check_collision(self:get_aabb(new_x, new_y))
+        local mob_collision = mob:check_collision(self:get_aabb(new_x, new_y))
+        if not (world_collision or mob_collision) then
             self.x = new_x
             self.y = new_y
             --print(self.x, self.y)

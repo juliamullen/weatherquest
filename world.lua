@@ -51,11 +51,11 @@ function World:check_collision(bound_x, bound_y, w, h)
             --print("column", column_index, "row", row_index, "tile", tile)
             if not tile or tile == 3 then
                 --print ("left", left, "right", right, "top", top, "bottom", bottom)
-                return false
+                return true
             end
         end
     end
     --print ("left", left, "right", right, "top", top, "bottom", bottom)
     --print(self.map[top][left], self.map[bottom][right])
-    return true
+    return false
 end

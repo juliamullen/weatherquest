@@ -14,8 +14,8 @@ function love.load()
     require "world"
     require "mob"
 
-    local world_width = 30
-    local world_height = 16
+    local world_width = 13
+    local world_height = 12
 
     mode = 'adventure'
     world = World(world_width, world_height)
@@ -31,7 +31,6 @@ function love.update(dt)
         love.event.quit()
     end
     if mode == 'adventure' then
-        mob:update()
         player:update(dt)
     elseif mode == 'start' then
     elseif mode == 'conversation' then
