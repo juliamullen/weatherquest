@@ -1,4 +1,5 @@
 classic.lua
+.DS_Store
 *.png
 pl/
 *.jpeg
