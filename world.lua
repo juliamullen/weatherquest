@@ -32,6 +32,7 @@ function World:draw()
     end
 end
 
+
 function World:get_tile_coordinates(x, y, w, h)
     --print(x, y, w, h)
     local top, bottom = math.ceil(y / self.tile_size),  math.ceil((y + h) / self.tile_size)
