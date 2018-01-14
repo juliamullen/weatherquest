@@ -15,8 +15,6 @@ function utils.create_map(width, height)
         end
         map[i] = map_row
     end
-    --print(inspect(map))
-    map[8][11] = 3
     return map
 end
 

@@ -6,7 +6,7 @@ function World:new(width, height)
     self.map_width = width
     self.map_height = height
     self.map = utils.create_map(self.map_width, self.map_height)
-    self.tiles = {love.graphics.newImage("img/grass-tile.png"), love.graphics.newImage("img/grass-tile-2.png"), love.graphics.newImage("img/grass-tile-3.png")}
+    self.tiles = {love.graphics.newImage("img/tile1.png"), love.graphics.newImage("img/tile2.png"), love.graphics.newImage("img/wall.png")}
     self.tile_size = 48
 end
 

@@ -1,7 +1,7 @@
 Mob = Object:extend()
 
 function Mob:new()
-    self.image = love.graphics.newImage("img/enemy1.png")
+    self.image = love.graphics.newImage("img/npc.png")
     self.x = love.graphics.getWidth() - 200
     self.y = love.graphics.getHeight() - 200
 end
@@ -20,7 +20,7 @@ function Mob:check_collision(bound_x, bound_y, w, h)
     bound_x < self.x + self.image:getWidth() - 30 and
     self.y < bound_y + h and
     bound_y < self.y + self.image:getHeight() - 15
-    print (bounding_box)
+    --print (bounding_box)
     return bounding_box
 end
 

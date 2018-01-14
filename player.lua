@@ -1,7 +1,7 @@
 Player = Object:extend()
 
 function Player:new()
-    self.image = love.graphics.newImage("img/player1.png")
+    self.image = love.graphics.newImage("img/p1.png")
     self.x = 100
     self.y = 100
     self.speed = 400
